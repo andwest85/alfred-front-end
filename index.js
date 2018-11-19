@@ -17,6 +17,6 @@ app.set('view engine', 'html');
 app.get('*', function (req, res, next) {
   res.render('index.html')
 })
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT);
 
 module.exports = app;
