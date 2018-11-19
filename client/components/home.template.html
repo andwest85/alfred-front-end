@@ -1,0 +1,11 @@
+<h1 style="text-align: center">#teamup Alfred Administrator Console</h1>
+<form ng-submit="$ctrl.login()" style="width: 50%; margin-right: auto; margin-left:auto">
+  <h4 ng-show="$ctrl.error.length" class="bg-danger"> {{ $ctrl.error[0] }} </h4>
+  <br>
+  <input type="text" placeholder="username" ng-model="$ctrl.username"
+  class="form-control" name="username">
+  <br>
+  <input type="text" placeholder="password" ng-model="$ctrl.password" class="form-control" name="password">
+  <br>
+  <input type="submit" value="login" style="width: 100%; font-size: 20px; border-radius: 5px; color: white; background: #00bceb">
+</form>
