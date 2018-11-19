@@ -12,6 +12,8 @@ router.post('/login', function (req, res, next) {
     if (req.body.username === process.env.USERNAME && bcrypt.compareSync(req.body.password, process.env.PASSWORD))
       { token = jwt.sign({username: req.body.username, password: req.body.password}, process.env.SECRET);
       res.json({token: token, username: req.body.username}); return; }
+}, function error(err) {
+  console.log("ERROR: ", err);
 });
 
 router.get('/rooms', function(req, res, next) {
