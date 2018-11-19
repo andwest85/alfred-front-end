@@ -5,8 +5,8 @@
 <div style="width: 41.5%; margin-left: auto; margin-right: auto; float: left; border: 1px solid #00bceb; margin: 2%; margin-left: 5%;">
   <div style="text-align: center; margin: 2%; margin-bottom: 4%">
     <input type="button" ng-click="$ctrl.selectAll()" name="selectAll" value="Select All" style="width: 80%; font-size: 20px; margin-top: 2%;border-radius: 5px; color: white; background: #00bceb; margin-left: auto; margin-right: auto">
-    <input type="button" ng-click="$ctrl.selectAllGroups()" name="selectAllDirects" value="Select All Direct Rooms" style="width: 80%; font-size: 20px;margin-top: 2%; border-radius: 5px; color: white; background: #00bceb; margin-left: auto; margin-right: auto">
     <input type="button" ng-click="$ctrl.selectAllDirects()" name="selectAllGroups" value="Select All Group Rooms" style="width: 80%; font-size: 20px;margin-top: 2%; border-radius: 5px; color: white; background: #00bceb; margin-left: auto; margin-right: auto">
+    <input type="button" ng-click="$ctrl.selectAllGroups()" name="selectAllDirects" value="Select All Direct Rooms" style="width: 80%; font-size: 20px;margin-top: 2%; border-radius: 5px; color: white; background: #00bceb; margin-left: auto; margin-right: auto">
   </div>
   <h4 style="text-align: center;" ng-show="$ctrl.groupRooms.length">Group Spaces</h4>
   <h5 style="margin-left: 3%;" class="pointer" ng-repeat="room in $ctrl.groupRooms track by $index" ng-click="$ctrl.selectSpace($index, 'group')"> {{ room.title }} </h5>
