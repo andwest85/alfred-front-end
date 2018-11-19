@@ -17,6 +17,11 @@ app.set('view engine', 'html');
 app.get('*', function (req, res, next) {
   res.render('index.html')
 })
-app.listen(process.env.PORT);
+
+var port = process.env.PORT || 8000;
+
+app.listen(port, function() {
+    console.log("App is running on port " + port);
+});
 
 module.exports = app;
