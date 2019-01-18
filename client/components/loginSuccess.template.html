@@ -22,9 +22,11 @@
     <input type="button" ng-click="$ctrl.clearAll()" name="Clear" value="Clear All" style="width: 80%; font-size: 20px; border-radius: 5px; color: white; background: #00bceb; margin-left: auto; margin-right: auto">
   </div>
   <h4 style="text-align: center">Message to User(s)</h4>
+  <span style="width: 80%; margin-left:3%;"><input type="checkbox" ng-click="$ctrl.markdown()">     <label for "markdown"><h5>Use Markdown</h5></label></span>
   <textarea spellcheck="true" type="text" ng-model="$ctrl.userText"  style="margin-left: 3%; margin-right:3%; margin-bottom: 3%; width: 94%; height: 200px; border: 1px solid lightgrey; padding-left: 10px">
   </textarea>
   <div style="text-align: center; margin: 2%; margin-bottom: 4%">
     <input type="button" ng-click="$ctrl.sendMessage()" name="Send Message" value="Send Message" style="width: 80%; font-size: 20px; border-radius: 5px; color: white; background: #00bceb; margin-left: auto; margin-right: auto">
   </div>
+
 </div>

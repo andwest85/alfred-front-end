@@ -19,6 +19,7 @@ router.post('/login', function (req, res, next) {
 router.get('/rooms', function(req, res, next) {
     axios.get('https://api.ciscospark.com/v1/rooms', { headers: { Authorization: 'Bearer '+ process.env.ACCESS_TOKEN } })
     .then(function(data) {
+        console.log("ROOMS DATA: ", data)
         res.json(data.data.items);
     }).catch(function(err) {
         res.json(res.error)
@@ -37,8 +38,30 @@ router.post('/auth', function(req, res, next) {
 });
 
 router.post('/message', function (req, res, next) {
+  console.log('hitting fn line 41');
    for (var i = 0; i < req.body.roomIds.length; i++) {
-     axios.post('https://api.ciscospark.com/v1/messages', {roomId: req.body.roomIds[i], text: req.body.text}, { headers: { Authorization: 'Bearer '+ process.env.ACCESS_TOKEN } } ).then(function(data) {
+     if (req.body.text) {
+       axios.post('https://api.ciscospark.com/v1/messages', {roomId: req.body.roomIds[i], text: req.body.text}, { headers: { Authorization: 'Bearer '+ process.env.ACCESS_TOKEN } } ).then(function(data) {
+         res.json({data: "SUCCESS!"});
+       }).catch(function(err) {
+         res.json({data: false});
+         console.error("ERROR: ", err);
+       });
+     } else if (req.body.markdown) {
+       console.log('hitting markdown if block');
+       axios.post('https://api.ciscospark.com/v1/messages', {roomId: req.body.roomIds[i], markdown: req.body.markdown}, { headers: { Authorization: 'Bearer '+ process.env.ACCESS_TOKEN } } ).then(function(data) {
+         res.json({data: "SUCCESS!"});
+       }).catch(function(err) {
+         res.json({data: false});
+         console.error("ERROR: ", err);
+       });
+     }
+   }
+});
+
+router.post('/markdown', function (req, res, next) {
+   for (var i = 0; i < req.body.roomIds.length; i++) {
+     axios.post('https://api.ciscospark.com/v1/messages', {roomId: req.body.roomIds[i], markdown: req.body.markdown}, { headers: { Authorization: 'Bearer '+ process.env.ACCESS_TOKEN } } ).then(function(data) {
        res.json({data: "SUCCESS!"});
      }).catch(function(err) {
        res.json({data: false});

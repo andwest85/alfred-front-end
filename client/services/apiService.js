@@ -33,6 +33,7 @@ app.service('apiService', function($http) {
     },
 
     sendMessage: function(messageData) {
+        console.log('HITTING SERVICE IF ', messageData);
        return $http.post('/api/message', messageData).then(function(res) {
           return res;
        }).catch(function(err) {

@@ -8,38 +8,55 @@ function controller($http, $uibModal, $rootScope, $state, $scope, apiService) {
   var $ctrl = this;
 
   $ctrl.$onInit = onInit;
+  $ctrl.markdownSelected = false;
+
+  $ctrl.markdown = function () {
+      $ctrl.markdownSelected = !$ctrl.markdownSelected;
+      console.log("CTRL MARKDOWN SELECTED: ", $ctrl.markdownSelected);
+  };
 
   $ctrl.sendMessage = function () {
-    console.log("USER TEXT: ", $ctrl.userText);
     var messageData = {};
-    messageData.text = $ctrl.userText;
+    if ($ctrl.markdownSelected) {
+      messageData.markdown = $ctrl.userText;
+      console.log('hitting ctrl if line 22');
+    } else {
+      messageData.text = $ctrl.userText;
+    }
     messageData.roomIds = $ctrl.selectedSpaces.map(function(el) {
         return el.id;
     });
-    if(messageData && messageData.text && messageData.roomIds && messageData.roomIds.length) {
-      $uibModal.open({
-        template: `
-          <div style="width: 50%; height: 250px; margin-left:auto; margin-right: auto; padding: 10%">
-            <h1 style="color: #00bceb">Message Sent!<h1>
-          </div>
-        `,
-      })
-      $state.go($state.current, {}, {reload: true});
-      return apiService.sendMessage(messageData).then(function(response) {
-          console.log("RES", response);
-      }).catch(function(err) {
-        console.error("ERROR IN CONTROLLER", err);
-      })
+    return apiService.sendMessage(messageData).then(function(response) {
+        console.log("RES", response);
+    }).catch(function(err) {
+      console.error("ERROR IN CONTROLLER", err);
+    })
+    if(messageData && messageData.text || messData.markdown && messageData.roomIds && messageData.roomIds.length) {
+      $ctrl.successModal()
     } else {
-      $uibModal.open({
-        template: `
-          <div style="width: 50%; height: 250px; margin-left:auto; margin-right: auto; padding: 10%">
-            <h1 style="color: #e2231a">Ensure that you have selected a space and typed a message.<h1>
-          </div>
-        `,
-      })
+      $ctrl.errorModal()
     }
+  };
 
+  $ctrl.successModal = function () {
+    $uibModal.open({
+      template: `
+        <div style="width: 50%; height: 250px; margin-left:auto; margin-right: auto; padding: 10%">
+          <h1 style="color: #00bceb">Message Sent!<h1>
+        </div>
+      `,
+    })
+    $state.go($state.current, {}, {reload: true});
+  };
+
+  $ctrl.errorModal = function () {
+    $uibModal.open({
+      template: `
+        <div style="width: 50%; height: 250px; margin-left:auto; margin-right: auto; padding: 10%">
+          <h1 style="color: #e2231a">Ensure that you have selected a space and typed a message.<h1>
+        </div>
+      `,
+    })
   }
 
   $ctrl.logout = function () {
