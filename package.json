@@ -1,6 +1,9 @@
 {
   "name": "ng_1.5_sdql",
   "version": "1.0.0",
+  "engines": {
+    "node": "9.10.1"
+  },
   "description": "",
   "main": "index.js",
   "scripts": {
