@@ -1,11 +1,11 @@
 {
-  "name": "alfred_front_end",
+  "name": "ng_1.5_sdql",
   "version": "1.0.0",
+  "description": "",
   "engines": {
     "node": "10.x",
      "npm": "6.x"
   },
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
