@@ -72,8 +72,17 @@ router.post('/markdown', function (req, res, next) {
 
 router.post('/space', function(req, res, next) {
   //https://alfred-admin.herokuapp.com/api/space
-  console.log("req: ", req.body);
-  res.send('hitting route with request data: ', req)
+  //https://eurl.io/#HJL5dMD8V
+  console.log("Just Joined Room: ", req.body.personDisplayName);
+  console.log("EMAIL: ", req.body.personEmail);
+  console.log("Just Joined Room: ", req.body.personId);
+  res.send('hitting route with request data: ', req);
+  axios.post('https://api.ciscospark.com/v1/messages', {toPersonEmail: req.body.personEmail, text: "Greetings!" + req.body.personDisplayName+ "TEST TEST TEST"}, { headers: { Authorization: 'Bearer '+ process.env.ACCESS_TOKEN } } ).then(function(data) {
+    res.json({data: "SUCCESS!"});
+  }).catch(function(err) {
+    res.json({data: false});
+    console.error("ERROR: ", err);
+  });
 });
 
 
