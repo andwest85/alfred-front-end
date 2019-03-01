@@ -73,7 +73,7 @@ router.post('/markdown', function (req, res, next) {
 router.post('/space', function(req, res, next) {
   //https://alfred-admin.herokuapp.com/api/space
   console.log("req: ", req);
-  res.send('hitting route!!!')
+  res.send('hitting route with request data: ', req)
 });
 
 
