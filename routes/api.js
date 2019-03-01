@@ -74,21 +74,20 @@ router.post('/space', function(req, res, next) {
   //https://alfred-admin.herokuapp.com/api/space
   //https://eurl.io/#HJL5dMD8V
   // console.log("Just Joined Room: ", req.body.data.personEmail, req.body.data.personDisplayName);
+  axios.post('https://api.ciscospark.com/v1/messages', {toPersonEmail: req.body.data.personEmail, text: "Greetings! " + req.body.data.personDisplayName}, { headers: { Authorization: 'Bearer '+ process.env.ACCESS_TOKEN } } ).then(function(data) {
+    res.json({data: "SUCCESS!"});
+  }).catch(function(err) {
+    res.json({data: false});
+    console.error("ERROR: ", err);
+  });
   axios.get('https://api.ciscospark.com/v1/memberships?roomId=Y2lzY29zcGFyazovL3VzL1JPT00vMmNhOTM0YjAtM2M2OS0xMWU5LWIyM2UtZGYzYjkwODYzMWY1', { headers: { Authorization: 'Bearer Y2NkYzZhYWUtZDZiZS00ZDg3LThhYjAtYTM3NzhhNTA4NDA2NTUwZTAyYzQtZmM1_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f'} }).then(function(data) {
-    console.log("ROOM DATA", data.data);
-    for (var i = 0; i < data.data.length; i++) {
-      if (data.data[i].personEmail === req.body.data.personEmail) {
-        axios.delete('https://api.ciscospark.com/v1/memberships/' + data.data.id);
-        axios.post('https://api.ciscospark.com/v1/messages', {toPersonEmail: req.body.data.personEmail, text: "Greetings! " + req.body.data.personDisplayName}, { headers: { Authorization: 'Bearer '+ process.env.ACCESS_TOKEN } } ).then(function(data) {
-          res.json({data: "SUCCESS!"});
-        }).catch(function(err) {
-          res.json({data: false});
-          console.error("ERROR: ", err);
-        });
+      console.log("ROOM DATA", data.data);
+      for (var i = 0; i < data.data.length; i++) {
+          if (data.data[i].personEmail === req.body.data.personEmail) {
+              axios.delete('https://api.ciscospark.com/v1/memberships/' + data.data.id);
+          }
       }
-    }
   })
-
 });
 
 
