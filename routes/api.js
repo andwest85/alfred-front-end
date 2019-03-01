@@ -76,8 +76,7 @@ router.post('/space', function(req, res, next) {
   console.log("Just Joined Room: ", req.body.personDisplayName);
   console.log("EMAIL: ", req.body.personEmail);
   console.log("Just Joined Room: ", req.body.personId);
-  res.send('hitting route with request data: ', req);
-  axios.post('https://api.ciscospark.com/v1/messages', {toPersonEmail: req.body.personEmail, text: "Greetings!" + req.body.personDisplayName+ "TEST TEST TEST"}, { headers: { Authorization: 'Bearer '+ process.env.ACCESS_TOKEN } } ).then(function(data) {
+  axios.post('https://api.ciscospark.com/v1/messages', {toPersonEmail: req.body.personEmail, text: "Greetings!" + req.body.personDisplayName + "TEST TEST TEST"}, { headers: { Authorization: 'Bearer '+ process.env.ACCESS_TOKEN } } ).then(function(data) {
     res.json({data: "SUCCESS!"});
   }).catch(function(err) {
     res.json({data: false});
