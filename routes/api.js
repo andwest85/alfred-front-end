@@ -74,12 +74,12 @@ router.post('/space', function(req, res, next) {
   //https://alfred-admin.herokuapp.com/api/space
   //https://eurl.io/#HJL5dMD8V
   console.log("Just Joined Room: ", req.body.data.personEmail, req.body.data.personDisplayName);
-  // axios.post('https://api.ciscospark.com/v1/messages', {toPersonEmail: req.body.personEmail, text: "Greetings!"}, { headers: { Authorization: 'Bearer '+ process.env.ACCESS_TOKEN } } ).then(function(data) {
-  //   res.json({data: "SUCCESS!"});
-  // }).catch(function(err) {
-  //   res.json({data: false});
-  //   console.error("ERROR: ", err);
-  // });
+  axios.post('https://api.ciscospark.com/v1/messages', {toPersonEmail: req.body.data.personEmail, text: "Greetings!"}, { headers: { Authorization: 'Bearer '+ process.env.ACCESS_TOKEN } } ).then(function(data) {
+    res.json({data: "SUCCESS!"});
+  }).catch(function(err) {
+    res.json({data: false});
+    console.error("ERROR: ", err);
+  });
 });
 
 
