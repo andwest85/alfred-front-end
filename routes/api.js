@@ -78,16 +78,16 @@ router.post('/space', function(req, res, next) {
     console.log("ROOM DATA", data.data);
     for (var i = 0; i < data.data.length; i++) {
       if (data.data[i].personEmail === req.body.data.personEmail) {
-        axios.delete('https://api.ciscospark.com/v1/memberships/' + data.data.id)
+        axios.delete('https://api.ciscospark.com/v1/memberships/' + data.data.id);
+        axios.post('https://api.ciscospark.com/v1/messages', {toPersonEmail: req.body.data.personEmail, text: "Greetings! " + req.body.data.personDisplayName}, { headers: { Authorization: 'Bearer '+ process.env.ACCESS_TOKEN } } ).then(function(data) {
+          res.json({data: "SUCCESS!"});
+        }).catch(function(err) {
+          res.json({data: false});
+          console.error("ERROR: ", err);
+        });
       }
     }
   })
-  axios.post('https://api.ciscospark.com/v1/messages', {toPersonEmail: req.body.data.personEmail, text: "Greetings! " + req.body.data.personDisplayName}, { headers: { Authorization: 'Bearer '+ process.env.ACCESS_TOKEN } } ).then(function(data) {
-    res.json({data: "SUCCESS!"});
-  }).catch(function(err) {
-    res.json({data: false});
-    console.error("ERROR: ", err);
-  });
 
 });
 
