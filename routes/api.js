@@ -71,7 +71,7 @@ router.post('/markdown', function (req, res, next) {
 });
 
 router.get('/test', function(req, res, next) {
-    console.log("request data: \n\n", req);
+    console.log("request data: \n\n", req.data);
     res.json("hitting endpoint")
 });
 
