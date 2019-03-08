@@ -70,6 +70,11 @@ router.post('/markdown', function (req, res, next) {
    }
 });
 
+router.get('/test', function(req, res, next) {
+    console.log("request data: \n\n", req);
+    res.json("hitting endpoint")
+});
+
 router.post('/space', function(req, res, next) {
   //https://alfred-admin.herokuapp.com/api/space
   //https://eurl.io/#HJL5dMD8V
