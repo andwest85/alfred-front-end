@@ -84,14 +84,14 @@ router.post('/space', function(req, res, next) {
     res.json({data: false});
     console.error("ERROR: ", err);
   });
-  axios.get('https://api.ciscospark.com/v1/memberships?roomId=Y2lzY29zcGFyazovL3VzL1JPT00vMmNhOTM0YjAtM2M2OS0xMWU5LWIyM2UtZGYzYjkwODYzMWY1', { headers: { Authorization: 'Bearer Y2NkYzZhYWUtZDZiZS00ZDg3LThhYjAtYTM3NzhhNTA4NDA2NTUwZTAyYzQtZmM1_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f'} }).then(function(data) {
-      console.log("ROOM DATA", data.data);
-      for (var i = 0; i < data.data.length; i++) {
-          if (data.data[i].personEmail === req.body.data.personEmail) {
-              axios.delete('https://api.ciscospark.com/v1/memberships/' + data.data.id);
-          }
-      }
-  })
+  // axios.get('https://api.ciscospark.com/v1/memberships?roomId=Y2lzY29zcGFyazovL3VzL1JPT00vMmNhOTM0YjAtM2M2OS0xMWU5LWIyM2UtZGYzYjkwODYzMWY1', { headers: { Authorization: 'Bearer Y2NkYzZhYWUtZDZiZS00ZDg3LThhYjAtYTM3NzhhNTA4NDA2NTUwZTAyYzQtZmM1_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f'} }).then(function(data) {
+  //     console.log("ROOM DATA", data.data);
+  //     for (var i = 0; i < data.data.length; i++) {
+  //         if (data.data[i].personEmail === req.body.data.personEmail) {
+  //             axios.delete('https://api.ciscospark.com/v1/memberships/' + data.data.id);
+  //         }
+  //     }
+  // })
 });
 
 
